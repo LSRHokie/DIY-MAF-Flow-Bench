@@ -40,6 +40,7 @@ The goal is **one fixed build**: the only part that varies between benches is th
 - `platformio.ini` `data_dir` path case, which broke builds on Linux.
 - `sensors.cpp` included `mafData.h`, but the file is `mafdata.h`, which broke builds on Linux.
 - `API.cpp` used the ESP32-only ROM CRC header; it now uses `esp_rom_crc.h`, which works on the ESP32 and the ESP32-S3.
+- Removed the unused gulp/npm toolchain (`package.json`, `package-lock.json`, `gulpfile.js`). Its tasks read from `ESP32/DIY-Flow-Bench/src/`, which no longer exists; the build embeds the web interface with `tools/htmlToBytes.py`. It was the source of 41 npm vulnerability alerts (16 high, 24 moderate, 1 low), several with no fixed release.
 
 ## Building for the V2 controller
 
